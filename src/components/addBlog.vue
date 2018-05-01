@@ -57,12 +57,7 @@
         },
         methods: {
             post: function () {
-                this.$http.post('http://jsonplaceholder.typicode.com/posts', {
-                    title: this.blog.title,
-                    content: this.blog.content,
-                    author: this.blog.author,
-                    categories: this.blog.categories
-                }).then(function (data) {
+                this.$http.post('https://vuejs-blog-from-the-net-ninjs.firebaseio.com/posts.json',this.blog).then(function (data) {
                     console.log(data);
                     this.submitted = true
                 });
