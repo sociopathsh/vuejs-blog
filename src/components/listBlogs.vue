@@ -1,10 +1,9 @@
 <template>
     <div id="show-blogs">
-        <h1>All Blog Articles</h1>
+        <h1>List Blog Articles</h1>
         <input type="text" v-model="search" placeholder="search blogs">
         <div v-for="blog in filteredBlogs" class="single-blog">
             <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
-            <article>{{ blog.body | snippet }}</article>
         </div>
     </div>
 </template>
@@ -20,7 +19,7 @@ import searchMixin from '../mixins/searchMixin';
         },
         created() {
             this.$http.get('http://jsonplaceholder.typicode.com/posts').then(function (data) {
-               this.blogs = data.body.slice(0,10);
+                this.blogs = data.body.slice(0,10);
             });
         },
         mixins: [searchMixin],
@@ -29,8 +28,8 @@ import searchMixin from '../mixins/searchMixin';
                 return value.toUpperCase();
             }
             /*toUpperCase(value) {
-                return value.toUpperCase();
-            }*/
+             return value.toUpperCase();
+             }*/
         },
         directives: {
             'rainbow': {
@@ -43,19 +42,19 @@ import searchMixin from '../mixins/searchMixin';
 </script>
 
 <style>
-#show-blogs {
-    max-width: 800px;
-    margin: 0 auto;
-}
+    #show-blogs {
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
-.single-blog {
-    padding: 20px;
-    margin: 20px 0;
-    box-sizing: border-box;
-    background: #eee;
-}
+    .single-blog {
+        padding: 20px;
+        margin: 20px 0;
+        box-sizing: border-box;
+        background: #eee;
+    }
 
-input {
-    width: 100%;
-}
+    input {
+        width: 100%;
+    }
 </style>
