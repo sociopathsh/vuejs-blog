@@ -1,7 +1,7 @@
 <template>
     <div id="add-blog">
         <h2>Add a new blog post</h2>
-        <form>
+        <form v-show="!submitted">
             <label>Blog Title: </label>
             <input type="text" required v-model.lazy="blog.title">
             <label>Blog Content: </label>
@@ -22,7 +22,11 @@
             </select>
             <button v-on:click.prevent="post">Add blog</button>
         </form>
+        <div v-if="submitted">
+            <h3>Thanks for adding post</h3>
+        </div>
         <div id="preview">
+
             <h3>Preview Blog</h3>
             <p>Blog Title: </p>
             <p>{{ blog.title }}</p>
@@ -47,7 +51,8 @@
                     categories: [],
                     author: ''
                 },
-                authors: ['Sherlock','Microft','John']
+                authors: ['Sherlock','Microft','John'],
+                submitted: false
             }
         },
         methods: {
@@ -59,6 +64,7 @@
                     categories: this.blog.categories
                 }).then(function (data) {
                     console.log(data);
+                    this.submitted = true
                 });
             }
         }
